@@ -1,79 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="hu">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"> 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="hangman-style.css">
-  <title>Hangman from HU</title>
-  
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="hangman-style.css">
+  <title>Akasztófa-játék</title>
 </head>
-
 <body>
-  <div class="wrapper">
-    
-    <!-- <span id="spanID" style = "position:absolute; top:0; right:0; color:white; background:none;"></span> -->
-    
-    <h2 class="gameTitle">AKASZTÓFA-JÁTÉK</h2>
-    <main>
-       <div class="hangman">                                   <!--  Hangman felrajzolása -->
-        <svg height="140" width="100" class="figure-container">
-          <!-- Rod -->
-          <line id="hm01" x1="10" y1="120" x2="50" y2="120" />
-          <line id="hm02" x1="30" y1="20" x2="30" y2="120" />
-          <line id="hm03" x1="30" y1="20" x2="70" y2="20" />
-          <line id="hm04" x1="70" y1="20" x2="70" y2="40" />
-          
-          <!-- Head -->
-          <circle id="hm05" cx="70" cy="50" r="8" />
-          <!-- Body -->
-          <line id="hm06" x1="70" y1="60" x2="70" y2="90" />
-          <!-- Arms -->
-          <line id="hm07" x1="69" y1="65" x2="55" y2="85" />
-          <line id="hm08" x1="71" y1="65" x2="85" y2="85" />
-          <!-- Legs -->
-          <line id="hm09" x1="69" y1="85" x2="60" y2="110" />
-          <line id="hm010" x1="71" y1="85" x2="80" y2="110" />
-        </svg>
-      </div>
+  <div id="root"></div>
 
-      <p id="taskTipus"></p>
-      <div class="feladatCont"></div>                   <!-- feladvány container -->
-      
-      <div class="lettersCont"></div>                     <!-- ABC container -->
-   </main>
-    
-   <button class="gameBtn gameBtnGrad1 rejtes" type="button" onmouseup=releaseBtn(event) onmousedown=pushBtn(event)
-        onclick="kerdestFeltesz(rowWidth)">Új játék</button>
-
-   <!-- <button class="gameBtn gameBtnGrad2" type="button" onmouseup=releaseBtn(event) onmousedown=pushBtn(event)
-        onclick="kerdestFeltesz(rowWidth)">Megfejtem</button> -->
-
-  </div>  
-  
-  
-   <script>
-    
-   // *********************************************
-   // window.onload = () => ( document.querySelector("#spanID").innerHTML = window.innerWidth+` * `+window.innerHeight );
-       
-   // window.onresize = () => {
-     //   let kiiras = document.querySelector("#spanID");
-     //   kiiras.innerHTML = "";
-     //   kiiras.innerHTML = window.innerWidth+` * `+window.innerHeight;
-    //}        
-    
-    </script>
-
-    <script src="hangman.js"></script>
-    <script src="questionUp.js"></script>
-   
+  <script src="questions.js"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="app.js"></script>
 </body>
+</html>
 
-</html>   

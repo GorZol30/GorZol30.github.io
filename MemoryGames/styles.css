@@ -1,0 +1,261 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  /* background: #398fff; */
+  background-image: url('./hatter.jpg');
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.fejlec {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px 28px;
+  padding: 16px;
+  margin: 16px 30px 0 30px;
+}
+
+.left-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.selector-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.fejlec h1 {
+  color: yellow;
+  line-height: 1.1;
+  text-align: center;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0;
+  justify-self: center;
+}
+
+#ujraBtn {
+  width: 120px;
+  min-height: 56px;
+  padding: 3px 6px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  border: 2px solid #6e3302;
+  border-radius: 12px;
+  color: #fafafa;
+  background-color: #e56e0c;
+  cursor: pointer;
+  justify-self: end;
+}
+
+#ujraBtn:hover {
+  color: #060ab2;
+  background-color: #e0d35b;
+}
+
+#ujraBtn:active {
+  box-shadow: 5px 5px 5px #000 inset;
+}
+
+.deck-picker,
+.size-picker {
+  width: 140px;
+  display: grid;
+  gap: 6px;
+  color: #fdfa27;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.deck-picker select,
+.size-picker select {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 8px;
+  border: 2px solid #3c2474;
+  border-radius: 8px;
+  color: #111;
+  background-color: #fcffa4;
+  cursor: pointer;
+}
+
+.memory-game {
+  --card-gap: 8px;
+  --card-width: clamp(132px, 15.7vw, 170px);
+  --card-height: calc(var(--card-width) * 0.7);
+  width: min(calc((var(--columns) * var(--card-width)) + ((var(--columns) - 1) * var(--card-gap))), calc(100vw - 24px));
+  height: max-content;
+  margin: 20px auto 30px;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  gap: var(--card-gap);
+  perspective: 1000px;
+}
+
+.memory-game.completed {
+  animation: flashGameBoard 0.3s ease-in-out 10;
+}
+
+.memory-card {
+  width: 100%;
+  aspect-ratio: 1 / 0.7;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.5s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+  cursor: pointer;
+}
+
+.memory-card:active:not(:disabled) {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.memory-card:disabled {
+  cursor: default;
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: clamp(8px, 2vw, 20px);
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+  border-radius: 10px;
+  backface-visibility: hidden;
+}
+
+.bg-color {
+  border-radius: 10px;
+}
+
+.front-face {
+  transform: rotateY(180deg);
+  background-color: #a5d4e9f2;
+}
+
+.back-face {
+  background-color: #fff;
+}
+
+.vibrationCard {
+  background-color: transparent;
+}
+
+.vibrationCard .front-face {
+  animation: animateCard 0.2s ease-in-out 1.3s 5;
+}
+
+@keyframes animateCard {
+  from {
+    background-color: #a5d4e9f2;
+  }
+
+  to {
+    background-color: #89c9eb;
+  }
+}
+
+@keyframes flashGameBoard {
+  from {
+    filter: brightness(1);
+  }
+
+  to {
+    filter: brightness(1.65) drop-shadow(0 0 24px #fff);
+  }
+}
+
+@media (max-width: 720px) {
+  .fejlec {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 16px;
+    margin: 16px 16px 0;
+    gap: 12px;
+  }
+
+  .fejlec h1 {
+    order: 1;
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .left-controls {
+    order: 2;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    flex-wrap: nowrap;
+    grid-column: 1 / 2;
+  }
+
+  .selector-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .deck-picker,
+  .size-picker {
+    width: 110px;
+    flex: 0 0 auto;
+  }
+
+  #ujraBtn {
+    order: 3;
+    width: 110px;
+    min-height: 48px;
+    flex-shrink: 0;
+    justify-self: end;
+    margin-left: 0;
+  }
+
+  .memory-game {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}

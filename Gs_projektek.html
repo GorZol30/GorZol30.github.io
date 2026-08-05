@@ -15,10 +15,13 @@
     
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap');
   
-    body {
+    html, body {
         background: rgb(78, 76, 76);      
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
       }
     .wrapper {
       max-width: 1200px;
@@ -26,6 +29,7 @@
       margin: 0 auto;
       height: 100vh;
       position: relative;
+      overflow: hidden;
     }
     /***** Header ****************/ 
     .fejlec {
@@ -34,7 +38,7 @@
       /* background-image: linear-gradient(to left, #FF4E50 0%, #F9D423  51%, #FF4E50  100%); */
       /* background-size: 200% auto;  */
       width: 100%;
-      height: 18%;
+      height: 20%;
       margin: 0;
       padding: 0;
     }
@@ -43,31 +47,49 @@
       color: yellow;
       font-family: 'Caveat', cursive;
       font-weight: 400;
-      font-size: 4rem;
+      font-size: 3rem;
       font-style: italic;
-      line-height: 6rem;
+      line-height: 5rem;
     } 
     /****** Főkép *****************/    
     main {
       background: url('./buborekok.jpg');        
       background-repeat: no-repeat;
       background-size: cover;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      grid-template-rows: repeat(2, minmax(180px, 1fr));
+      gap: 1.25rem 1.5rem;
+      align-items: center;
+      justify-items: center;
       font-family: 'Roboto Mono', sans-serif;
       width: 100%;
       height:75%;
+      padding: 1.5rem 2rem;
+      box-sizing: border-box;
+      overflow: hidden;
     }
     main > div {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      max-width: 65%; 
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+    main > div a {
+      display: block;
+      width: min(100%, 320px);
+      aspect-ratio: 4 / 3;
     }
     /*---------------*/
     a > img {
+      display: block;
       width: 100%;
-      height: 60%;      
+      height: 100%;
+      object-fit: contain;
+      border-radius: 0.5rem;
     }
     #moziKep {box-shadow: .5rem .5rem .7rem #6f6868;}
     #hmKep {box-shadow: .5rem .5rem .7rem black;}
@@ -98,25 +120,25 @@
       }
      /*---------------*/
 
-      #filmSeekTitle, #hangmanTitle {
+      #filmSeekTitle, #hangmanTitle, #memoGameTitle, #puzzleTitle, #quizTitle {
          color:#cef9d5;
          margin-bottom: 2rem;
          text-align: center;
-         font-size: 2rem;
+         font-size: 1.5rem;
       }
 
     /***** Footer ****************/
     .lablec {
-      height: 7%;
+      height: 5%;
       text-align: center;
-      line-height: 4rem;
+      line-height: 3rem;
       width: 100%;
-      color: lightgray;
+      color: rgb(151, 151, 151);
       background: #373737;      
     }
       .lablec > p {
           margin: 0 auto;
-          font-size: 1.25rem;
+          font-size: 1rem;
       }
     /****************
       MEDIA QUERIES        
@@ -125,16 +147,16 @@
       .fejlec > p {
         font-size: 1.7rem;
       }
-      #filmSeekTitle, #hangmanTitle {
+      #filmSeekTitle, #hangmanTitle, #memoGameTitle, #puzzleTitle, #quizTitle {
          font-size: 1rem;
          margin-bottom: .5rem;
       }
       main {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;  
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        grid-template-rows: repeat(3, minmax(150px, 1fr));
         height:80%;
-      }  
+        padding: 1rem;
+      }
       .fejlec {
         height: 13%;
       }
@@ -145,9 +167,6 @@
     }
 
     @media (min-width: 471px) and (max-width: 550px) {
-      main > div {
-         max-width: 60%; 
-      }
       .fejlec > p {
         font-size: 2rem;
       }
@@ -156,15 +175,12 @@
       .fejlec > p {
         font-size: 2.4rem;
       }
-      main > div {
-         max-width: 50%; 
-      }
     }
     @media (min-width: 651px) and (max-width: 1000px) {
       .fejlec > p {
         font-size: 3rem;
       }
-      #filmSeekTitle, #hangmanTitle {
+      #filmSeekTitle, #hangmanTitle, #memoGameTitle, #puzzleTitle, #quizTitle {
          font-size: 1.5rem;
       }
     }
@@ -174,28 +190,52 @@
 <body>
   <div class="wrapper">
     <header class="fejlec">
-        <p>Első projektjeim</p>
+        <p>Gorisoft projektek</p>
     </header>
     <main>
        
-        <div id="filmSeek">
-          <p id="filmSeekTitle">Mozifilm kereső</p>
-          <a href="./Mozifilm/moviefinder.html">
-            <img id="moziKep" src="Movies.jpg" alt="movies">
+        <div id="memoGame">
+          <p id="memoGameTitle">Memória játék</p>
+          <a href="./MemoryGames/MemoryGame.html">
+            <img id="memoGameKep" src="MemoGame.jpg" alt="memogame">
           </a>
         </div>
-              
+
+        <div id="puzzleGame">
+          <p id="puzzleTitle">Puzzle játék</p>
+          <!-- <a href="http://localhost:4173" target="_blank" rel="noopener noreferrer"> -LOCAL!-->
+          <!-- react-nál a GitHub-ra való feltöltéshez jobb, ha csak a könyvtárra mutat -->
+          <a href="./Puzzle/dist/">                                
+            <img id="puzzleKep" src="Puzzle.jpg" alt="puzzle">
+          </a>
+        </div>
+
         <div id="hangmanGame">
           <p id="hangmanTitle">Akasztófa játék</p>
           <a href="./Hangman/Hangman.html">
             <img id="hmKep" src="Hangman.jpg" alt="hangman">
           </a>
         </div>
-      
+
+        <div id="quiz">
+          <p id="quizTitle">QUIZ - tudásteszt</p>
+          <!-- <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer"> -LOCAL!-->
+          <a href="./quiz/build/">
+            <img id="quizKep" src="QUIZmenu.jpg" alt="quiz">
+          </a>
+        </div>
+
+        <div id="filmSeek">
+          <p id="filmSeekTitle">Mozifilm kereső</p>
+          <a href="./Mozifilm/moviefinder.html">
+            <img id="moziKep" src="Movies.jpg" alt="movies">
+          </a>
+        </div>
+                   
     </main>
 
     <footer class="lablec">
-      <p>Copyright &copy;&nbsp;GoriSoft <sup>&reg;</sup>&nbsp;2021</p>
+      <p>Copyright &copy;&nbsp;GoriSoft <sup>&reg;</sup>&nbsp;2021-2026</p>
     </footer>
 
   </div>  
