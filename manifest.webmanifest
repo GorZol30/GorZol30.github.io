@@ -1,0 +1,15 @@
+{
+  "name": "GoriSoft projektek",
+  "short_name": "GoriSoft",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#4e4c4c",
+  "theme_color": "#4e4c4c",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
