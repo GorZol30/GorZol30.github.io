@@ -57,6 +57,9 @@
     .dashboard-nav-btn:active {
       transform: scale(0.97);
     }
+    .dashboard-nav-btn:hover {
+      color:#ffc700;
+    }
   `;
   document.head.appendChild(style);
 
