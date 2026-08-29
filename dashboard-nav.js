@@ -60,6 +60,9 @@
     .dashboard-nav-btn:hover {
       color:#ffc700;
     }
+    .dashboard-nav-btn[hidden] {
+      display: none;
+    }
   `;
   document.head.appendChild(style);
 
