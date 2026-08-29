@@ -15,7 +15,7 @@
     dashboardHref = '../../index.html';
   }
 
-  if (isDashboard) {
+  if (!isProgramPage || isDashboard) {
     return;
   }
 
@@ -31,16 +31,16 @@
   const style = document.createElement('style');
   style.textContent = `
     .dashboard-nav-btn {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      margin: 0 0 1rem 1rem;
+      position: fixed;
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      left: max(1rem, env(safe-area-inset-left));
+      margin: 0;
       color: #d4fbfc;
       background: #2074fd;
       width: 3rem;
       height: 3rem;
       font-size: 1.2rem;
-      z-index: 2;
+      z-index: 10000;
       border-radius: 50%;
       padding: .7rem;
       text-align: center;
@@ -73,4 +73,18 @@
   });
 
   document.body.appendChild(button);
+
+  // The Quiz is a single-page React application: its menu and question view
+  // share the same URL. The dashboard button belongs only on its menu screen.
+  if (currentPath.includes('/QUIZ/build/')) {
+    const updateQuizButtonVisibility = function () {
+      button.hidden = !document.querySelector('.mainWrapper');
+    };
+
+    updateQuizButtonVisibility();
+    new MutationObserver(updateQuizButtonVisibility).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
 })();
