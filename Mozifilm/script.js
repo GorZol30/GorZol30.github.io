@@ -69,7 +69,15 @@ async function filmsDownload(keresettWord, keresettYear) {
         }                
     } while (noBreakOut);
     
-    loadingShow(false); 
+    loadingShow(false);
+    if (keresettYear === "") {
+        state.filmTomb.sort(function (firstMovie, secondMovie) {
+            const firstYear = Number((String(firstMovie.Year).match(/\d{4}/) || ["0"])[0]);
+            const secondYear = Number((String(secondMovie.Year).match(/\d{4}/) || ["0"])[0]);
+
+            return secondYear - firstYear;
+        });
+    }
     state.talalatOsszesen = state.filmTomb.length;         // a talált filmek száma
     if (state.talalatOsszesen > 0) {
       //***   PAGINATION    - lapozó gombsor felhelyezése az oldalra - ha indokolt

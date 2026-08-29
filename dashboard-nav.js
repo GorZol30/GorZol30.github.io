@@ -78,7 +78,11 @@
   // share the same URL. The dashboard button belongs only on its menu screen.
   if (currentPath.includes('/QUIZ/build/')) {
     const updateQuizButtonVisibility = function () {
-      button.hidden = !document.querySelector('.mainWrapper');
+      const isQuizMenu = document.querySelector(
+        '#root > .mainWrapper .menuTable .menuElem'
+      ) && document.querySelector('#root > .mainWrapper .startBtn');
+
+      button.hidden = !isQuizMenu;
     };
 
     updateQuizButtonVisibility();
