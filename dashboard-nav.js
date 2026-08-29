@@ -81,8 +81,9 @@
       const isQuizMenu = document.querySelector(
         '#root > .mainWrapper .menuTable .menuElem'
       ) && document.querySelector('#root > .mainWrapper .startBtn');
+      const isQuizQuestionPage = document.querySelector('#root #nyilIcon');
 
-      button.hidden = !isQuizMenu;
+      button.hidden = !isQuizMenu || Boolean(isQuizQuestionPage);
     };
 
     updateQuizButtonVisibility();
